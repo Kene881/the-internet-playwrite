@@ -1,0 +1,9 @@
+{
+    "mainPageTestData": {
+        "titleText": "Welcome to the-internet",
+        "mainPageUrl": "https://the-internet.herokuapp.com/"
+    },
+    "addRemovePageTestData": {
+        "addButtonClickCount": 3
+    }
+}

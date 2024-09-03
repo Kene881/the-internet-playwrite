@@ -30,43 +30,63 @@ module.exports = defineConfig({
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
+  // timeout: 5 * 60 * 1000,
 
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: `Chrome`,
+      use: {
+        browserName: `chromium`,
+        channel: `chrome`,
+        headless: false,
+        viewport: { width: 1720, height: 850 },
+        screenshot: `only-on-failure`,
+        video: `retain-on-failure`,
+        trace: `retain-on-failure`
+      }
     },
-
     {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      name: `Firefox`,
+      use: {
+        browserName: `firefox`,
+        viewport: { width: 1720, height: 850 },
+        ignoreHTTPSErrors: true,
+        headless: true,
+        screenshot: `only-on-failure`,
+        video: `retain-on-failure`,
+        trace: `retain-on-failure`,
+        launchOptions: {
+          slowMo: 200
+        }
+      }
     },
-
     {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      name: `Safari`,
+      use: {
+        browserName: `webkit`,
+        viewport: { width: 1720, height: 850 },
+        ignoreHTTPSErrors: true,
+        screenshot: `only-on-failure`,
+        video: `retain-on-failure`,
+        trace: `retain-on-failure`
+      }
     },
-
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
-
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
+    {
+      name: `Edge`,
+      use: {
+        browserName: `chromium`,
+        channel: `msedge`,
+        viewport: { width: 1720, height: 850 },
+        ignoreHTTPSErrors: true,
+        screenshot: `only-on-failure`,
+        video: `retain-on-failure`,
+        trace: `retain-on-failure`,
+        launchOptions: {
+          slowMo: 100
+        }
+      }
+    }
   ],
 
   /* Run your local dev server before starting the tests */
